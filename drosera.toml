@@ -1,0 +1,17 @@
+ethereum_rpc = "https://ethereum-hoodi-rpc.publicnode.com"
+drosera_rpc = "https://relay.hoodi.drosera.io"
+eth_chain_id = 560048
+drosera_address = "0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D"
+
+[traps]
+[traps.nft_scam_detection]
+path = "out/NFTScamTrapDeployable.sol/NFTScamTrapDeployable.json"
+response_contract = "0xd87F8f5836F548b0906DE0f1B19d4CCc921bA868"
+response_function = "executeScamNFTResponse(uint256,uint256,uint256,uint256)"
+cooldown_period_blocks = 6
+min_number_of_operators = 1
+max_number_of_operators = 2
+block_sample_size = 2
+private_trap = true
+whitelist = ["0x9b4cE70f970D5603898B3eEc922884Ae60318382"]
+address = "0x8970fa5478a08c3f854132c7a8936c4deb799984"
