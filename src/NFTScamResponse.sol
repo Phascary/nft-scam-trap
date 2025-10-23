@@ -9,7 +9,7 @@ contract NFTScamResponse {
         uint256 timestamp,
         string alertType
     );
-    
+
     function executeScamNFTResponse(
         uint256 totalNFTs,
         uint256 suspiciousCount,
@@ -17,23 +17,19 @@ contract NFTScamResponse {
         uint256 timestamp
     ) external {
         string memory alertType;
-        
+
         if (suspiciousCount > previousCount) {
             alertType = "NEW_SCAM_NFTS_DETECTED";
+        } else if (totalNFTs == 0) {
+            alertType = "NO_TOKENS";
         } else {
             uint256 percentage = (suspiciousCount * 100) / totalNFTs;
             alertType = string(abi.encodePacked("HIGH_SCAM_RATIO_", _uint2str(percentage), "PERCENT"));
         }
-        
-        emit ScamNFTDetected(
-            totalNFTs,
-            suspiciousCount,
-            previousCount,
-            timestamp,
-            alertType
-        );
+
+        emit ScamNFTDetected(totalNFTs, suspiciousCount, previousCount, timestamp, alertType);
     }
-    
+
     function _uint2str(uint256 _i) internal pure returns (string memory) {
         if (_i == 0) return "0";
         uint256 j = _i;
